@@ -1,0 +1,14 @@
+{
+  "name": "Book Club",
+  "short_name": "Book Club",
+  "description": "A reading list, questions after every chapter, and a companion per book.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#faf7f2",
+  "theme_color": "#faf7f2",
+  "icons": [
+    { "src": "./favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
