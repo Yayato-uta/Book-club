@@ -8,6 +8,7 @@ end of every chapter, and gives each book a companion that grows when you keep
 your pace and gets sick when you don't.
 
 Everything is stored in your browser. No account, no server, no network calls.
+You can export it to a file and import it back on another device.
 
 ## The idea
 
@@ -52,6 +53,19 @@ did still read.
 chapter, ten proper answers, a three-chapter run, a single answer over 200
 characters, 150 XP, a seven-chapter run, and finishing the book.
 
+**Your shelf, as a file.** There is no account and nothing syncs, so the shelf
+lives in one browser's `localStorage` and nowhere else — clearing site data
+erases it. *Export a copy* on the shelf screen writes the whole state to a dated
+JSON file; *Import a copy* reads one back. Import folds into what is already
+there, matching on book id: a book the shelf has never seen is added, one it
+already has is replaced by the imported copy, and nothing is ever dropped. So
+restoring a backup over a newer shelf can't cost you a book, and importing the
+same file twice doesn't duplicate anything.
+
+Book ids are generated per device, so the same title typed by hand on two
+devices merges as two books. Export and import to keep one shelf across
+devices; retyping starts a second one.
+
 ## Running it
 
 ```
@@ -67,8 +81,8 @@ Then `npm run build` for a production bundle and `npm test` for the suite.
 src/lib/types.ts       the shape of a book, a chapter entry, a goal
 src/lib/questions.ts   the question bank and how three get chosen
 src/lib/companion.ts   XP, health, streaks, stages, accessories — all pure
-src/lib/storage.ts     localStorage, plus import/export and repair on load
-src/components/        Library, BookDetail, ChapterSession, Companion
+src/lib/storage.ts     localStorage, plus import/export/merge and repair on load
+src/components/        Library, BookDetail, ChapterSession, Companion, DataControls
 ```
 
 `companion.ts` holds no state. Everything about a companion is derived from the

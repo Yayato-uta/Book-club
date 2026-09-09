@@ -3,6 +3,7 @@ import type { AppState, Book, ChapterEntry } from './lib/types';
 import { loadState, saveState } from './lib/storage';
 import Library from './components/Library';
 import BookDetail from './components/BookDetail';
+import DataControls from './components/DataControls';
 
 export default function App() {
   const [state, setState] = useState<AppState>(() => loadState());
@@ -67,7 +68,10 @@ export default function App() {
             onLog={(entry) => logSession(selected.id, entry)}
           />
         ) : (
-          <Library books={state.books} onAdd={addBook} onSelect={setSelectedId} />
+          <>
+            <Library books={state.books} onAdd={addBook} onSelect={setSelectedId} />
+            <DataControls state={state} onReplace={setState} />
+          </>
         )}
       </main>
     </div>
